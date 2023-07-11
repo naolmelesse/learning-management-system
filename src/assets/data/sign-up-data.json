@@ -1,0 +1,38 @@
+{
+    "currentProfessionalStatus": [
+        "Working",
+        "On a break",
+        "Studying"
+    ],
+    "industryType": [
+        "Financial",
+        "IT",
+        "Education",
+        "Manufacturing",
+        " Other"
+    ],
+    "experienceInIT": [
+        "No experience",
+        "Basic Coding",
+        "Moderate Coding",
+        "Expert Coding",
+        "Leadership "
+    ],
+    "skillSpecialization": [
+        "Technical",
+        "Non Technical"
+    ],
+    "fieldSpecialization": [
+        "Technologist",
+        "Business Analyst",
+        "Quality Assurance",
+        "UI/UX",
+        "Support"
+    ],
+    "skills": [
+        "Angular",
+        "Nodejs",
+        "Java",
+        "Spring Boot"
+    ]
+}

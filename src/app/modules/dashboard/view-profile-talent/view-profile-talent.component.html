@@ -1,0 +1,352 @@
+
+<div class="talent-profile-wrapper">
+    <!-- Talent Profile card -->
+    <div class="talent-details-left">
+      <div class="card profile-card">
+        <div class="profile-view">
+            <img class="talent-profile-image" mat-card-image src={{talentData[0].otherDetails?.profileImage}} alt="talent-photo">
+            <div class="title-edit-group">
+            <div class="title">
+                <h2>{{talentData[0].personalDetails.name}}</h2>
+                <p>{{talentData[0].otherDetails?.fieldSpecialization}}</p>
+            </div>
+            <button pButton pRipple type="button" label="Edit" class="p-button-raised"></button>
+          </div>
+  
+        </div>
+      </div>
+  
+      <div class="card info-section">
+          <h2><i class="pi pi-user"></i> Personal details</h2>
+          <hr>
+          <table>
+            <tr>
+              <td>
+                <p>Email:</p>
+              </td>
+              <td>
+                <p> {{talentData[0].credentials.email}}</p>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <p>ID:</p>
+              </td>
+              <td>
+                <p> {{talentData[0].personalDetails.id}}</p>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <p>Age: </p>
+              </td>
+              <td>
+                <p> {{talentData[0].personalDetails.age}}</p>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <p>Gender:</p>
+              </td>
+              <td>
+                <p> {{talentData[0].personalDetails.gender}}</p>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <p>Country:</p>
+              </td>
+              <td>
+                <p> {{talentData[0].personalDetails.countryName}}</p>
+              </td>
+            </tr>
+          </table>
+      </div>
+  
+      <div class="card info-section">
+        <h2><i class="pi pi-info-circle"></i> Other details</h2>
+        <hr>
+        <table>
+          <tr>
+            <td>
+              <p>Known languages:</p>
+            </td>
+            <td>
+              <p> {{talentData[0].otherDetails?.knownLanguages}}</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>Field specialization:</p>
+            </td>
+            <td>
+              <p> {{talentData[0].otherDetails?.fieldSpecialization}}</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>Skill specialization: </p>
+            </td>
+            <td>
+              <p> {{talentData[0].otherDetails?.skillSpecialization}}</p>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+    
+    <!-- Talent profile full detail -->
+    <div class="talent-details-right">
+      <div class="card info-section">
+        <h2><i class="pi pi-home"></i> Education details</h2>
+        <hr>
+        <table *ngFor="let education of talentData[0].educationDetails">
+          <tr>
+            <td>
+              <p>Degree:</p>
+            </td>
+            <td>
+              <p> {{education.nameOfDegree}}</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>University:</p>
+            </td>
+            <td>
+              <p> {{education.nameOfUniversity}}</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>Year of passing: </p>
+            </td>
+            <td>
+              <p> {{education.yearOfPassing}}</p>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="card talent-details-skills info-section skill-section">
+          <h2><i class="pi pi-cog"></i> Skills</h2>
+          <hr>
+          <div class="skills-list">
+            <p-chip label={{skill}} styleClass="m-1" *ngFor="let skill of talentData[0].professionalDetails?.skills"></p-chip>
+          </div>
+      </div>
+      
+      <div class="card info-section ">
+        <h2><i class="pi pi-building"></i> Professional details</h2>
+        <hr>
+        <table>
+          <tr>
+            <td>
+              <p>Current status:</p>
+            </td>
+            <td>
+              <p> {{talentData[0].professionalDetails?.currentProfessionalStatus}}</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>Professional background:</p>
+            </td>
+            <td>
+              <p> {{talentData[0].professionalDetails?.experienceInIT}}</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>Industry: </p>
+            </td>
+            <td>
+              <p> {{talentData[0].professionalDetails?.industryType}}</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>Years of experience:</p>
+            </td>
+            <td>
+              <p> {{talentData[0].professionalDetails?.yearOfExperience}}</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>Current employer: </p>
+            </td>
+            <td>
+              <p>{{talentData[0].professionalDetails?.currentEmployerName}}</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>Linkedin: </p>
+            </td>
+            <td>
+              <p><a href={{talentData[0].professionalDetails?.linkedInProfileLink}}
+                  target="_blank">{{talentData[0].professionalDetails?.linkedInProfileLink}}</a></p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>Recorded video link: </p>
+            </td>
+            <td>
+              <p><a
+                  href={{talentData[0].professionalDetails?.recordedVideoLink}}>{{talentData[0].professionalDetails?.recordedVideoLink}}</a>
+              </p>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  
+  
+  </div>
+
+  <!-- Skeleton -->
+
+  <div class="talent-profile-wrapper">
+    <div class="talent-details-left">
+      <div class="card flex mb-3 align-items-center">
+        <div class="flex justify-content-between align-items-center profile-view">
+          <p-skeleton shape="circle" size="10rem" styleClass="mr-2"></p-skeleton>
+          <div>
+              <p-skeleton width="10rem" height="2rem" styleClass="mb-2"></p-skeleton>
+              <p-skeleton height=".5rem" height="1rem"></p-skeleton><br>
+              <p-skeleton width="5rem" height="2rem" styleClass="mb-2"></p-skeleton>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="flex align-items-center" style="width: 40%;">
+          <p-skeleton shape="circle" size="2rem" styleClass="mr-2"></p-skeleton>
+          <p-skeleton width="16rem"></p-skeleton>
+        </div>
+        <hr>
+        <table style="width: 50%;">
+          <tr>
+            <td><p-skeleton></p-skeleton></td>
+            <td><p-skeleton></p-skeleton></td>
+          </tr>
+          <tr>
+            <td><p-skeleton></p-skeleton></td>
+            <td><p-skeleton></p-skeleton></td>
+          </tr>
+          <tr>
+            <td><p-skeleton></p-skeleton></td>
+            <td><p-skeleton></p-skeleton></td>
+          </tr>
+          <tr>
+            <td><p-skeleton></p-skeleton></td>
+            <td><p-skeleton></p-skeleton></td>
+          </tr>
+          <tr>
+            <td><p-skeleton></p-skeleton></td>
+            <td><p-skeleton></p-skeleton></td>
+          </tr>
+        </table>
+      </div>
+      <div class="card">
+        <div class="flex align-items-center" style="width: 40%;">
+          <p-skeleton shape="circle" size="2rem" styleClass="mr-2"></p-skeleton>
+          <p-skeleton width="10rem"></p-skeleton>
+        </div>
+        <hr>
+        <table style="width: 50%;">
+          <tr>
+            <td><p-skeleton></p-skeleton></td>
+            <td><p-skeleton></p-skeleton></td>
+          </tr>
+          <tr>
+            <td><p-skeleton></p-skeleton></td>
+            <td><p-skeleton></p-skeleton></td>
+          </tr>
+          <tr>
+            <td><p-skeleton></p-skeleton></td>
+            <td><p-skeleton></p-skeleton></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+    <div class="talent-details-right">
+      <div class="card">
+        <div class="flex align-items-center" style="width: 40%;">
+          <p-skeleton shape="circle" size="2rem" styleClass="mr-2"></p-skeleton>
+          <p-skeleton width="10rem"></p-skeleton>
+        </div>
+        <hr>
+        <table style="width: 50%;">
+          <tr>
+            <td><p-skeleton></p-skeleton></td>
+            <td><p-skeleton></p-skeleton></td>
+          </tr>
+          <tr>
+            <td><p-skeleton></p-skeleton></td>
+            <td><p-skeleton></p-skeleton></td>
+          </tr>
+          <tr>
+            <td><p-skeleton></p-skeleton></td>
+            <td><p-skeleton></p-skeleton></td>
+          </tr>
+        </table>
+      </div>
+
+
+      <div class="card">
+        <div class="flex align-items-center" style="width: 40%;">
+          <p-skeleton shape="circle" size="2rem" styleClass="mr-2"></p-skeleton>
+          <p-skeleton width="7rem"></p-skeleton>
+        </div>
+        <hr>
+        <div class="flex flex-wrap" style="width: 100%;">
+          <p-skeleton width="10rem" height="1.5rem"></p-skeleton>
+          <p-skeleton width="10rem" height="1.5rem"></p-skeleton>
+          <p-skeleton width="10rem" height="1.5rem"></p-skeleton>
+          <p-skeleton width="10rem" height="1.5rem"></p-skeleton>
+          <p-skeleton width="10rem" height="1.5rem"></p-skeleton>
+          <p-skeleton width="10rem" height="1.5rem"></p-skeleton>
+          <p-skeleton width="10rem" height="1.5rem"></p-skeleton>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="flex align-items-center" style="width: 40%;">
+          <p-skeleton shape="circle" size="2rem" styleClass="mr-2"></p-skeleton>
+          <p-skeleton width="10rem"></p-skeleton>
+        </div>
+        <hr>
+        <table style="width: 50%;">
+          <tr>
+            <td><p-skeleton></p-skeleton></td>
+            <td><p-skeleton></p-skeleton></td>
+          </tr>
+          <tr>
+            <td><p-skeleton></p-skeleton></td>
+            <td><p-skeleton></p-skeleton></td>
+          </tr>
+          <tr>
+            <td><p-skeleton></p-skeleton></td>
+            <td><p-skeleton></p-skeleton></td>
+          </tr>
+          <tr>
+            <td><p-skeleton></p-skeleton></td>
+            <td><p-skeleton></p-skeleton></td>
+          </tr>
+          <tr>
+            <td><p-skeleton></p-skeleton></td>
+            <td><p-skeleton></p-skeleton></td>
+          </tr>
+          <tr>
+            <td><p-skeleton></p-skeleton></td>
+            <td><p-skeleton></p-skeleton></td>
+          </tr>
+          <tr>
+            <td><p-skeleton></p-skeleton></td>
+            <td><p-skeleton></p-skeleton></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>

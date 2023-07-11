@@ -1,0 +1,201 @@
+<div class="card">
+    <h1>All Talents</h1>
+    
+    <div>
+    <p-tabView>
+        <p-tabPanel header="Program Wise">
+            <p-table scrollDirection="both" [scrollable]="true" responsiveLayout="scroll" #talentsTable
+                [value]="allTalents" [paginator]="true" [rows]="5" [alwaysShowPaginator]="false" [showPageLinks]="false"
+                [showCurrentPageReport]="true" [showFirstLastIcon]="false" [tableStyle]="{ 'min-width': '50rem' }"
+                currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+                [globalFilterFields]="columnFields"
+                [rowsPerPageOptions]="[5, 10, 25, 50]">
+                <ng-template pTemplate="caption">
+                    <div class="flex">
+                        <span class="p-input-icon-right ml-auto">
+                            <p-multiSelect [options]="programs" [(ngModel)]="selectedPrograms" defaultLabel="Select program" 
+                            optionLabel="name" (onChange)="selectionChanged($event)"></p-multiSelect>
+                            <i *ngIf="searchInput.value != ''" (click)="clear(talentsTable); searchInput.value = ''" class="pi pi-times cursor-pointer"></i>
+                            <i *ngIf="searchInput.value == ''" class="pi pi-search"></i>
+                            <input pInputText #searchInput type="text" (input)="searchValue($event)" placeholder="Search keyword" />
+                        </span>
+                    </div>
+                </ng-template>
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th>
+                            <div class="flex align-items-center">
+                                ID
+                            </div>
+                        </th>
+                        <th>
+                            <div class="flex align-items-center">
+                                Name
+                            </div>
+                        </th>
+                        <th>
+                            <div class="flex align-items-center">
+                                Email
+                            </div>
+                        </th>
+                        <th>
+                            <div class="flex align-items-center">
+                                Program
+                            </div>
+                        </th>   
+                        <th>
+                            <div class="flex align-items-center">
+                                Edit / Delete
+                            </div>
+                        </th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-talent>
+                    <tr>
+                        <td>
+                            {{talent.id}}
+                        </td>
+                        <td class="talent-name-cell" (click)="router.navigate(['dashboard','all-talents','view',talent.id])">
+                            <img alt="" src="{{talent.profileImage}}" width="32" style="vertical-align: middle" />
+                            <span >{{talent.name}}</span> 
+                        </td>
+                        <td>
+                            <span class="image-text ml-2">{{talent.email}}</span>
+                        </td>
+                        <td #programCell>
+                            <p *ngFor="let program of talent.enrolledPrograms">{{program.name}}</p>
+                        </td>
+                        <td>
+                            <p-button icon="pi pi-pencil" styleClass="p-button-rounded" class="mr-2" [routerLink]="['edit',talent.id]"></p-button>
+                            <p-button icon="pi pi-trash" styleClass="p-button-danger p-button-rounded" [routerLink]="['edit',talent.id]"></p-button>
+                        </td>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="emptymessage">
+                    <tr>
+                        <td colspan="5">No data found.</td>
+                    </tr>
+                </ng-template>
+            </p-table>
+        </p-tabPanel>
+        <p-tabPanel header="Grade Wise">
+            <p-table scrollDirection="both" [scrollable]="true" responsiveLayout="scroll" #talentsGradeTable
+                [value]="allTalents" [paginator]="true" [rows]="5" [alwaysShowPaginator]="false" [showPageLinks]="false"
+                [showCurrentPageReport]="true" [showFirstLastIcon]="false" [tableStyle]="{ 'min-width': '50rem' }"
+                currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+                [globalFilterFields]="columnFields"
+                [rowsPerPageOptions]="[5, 10, 25, 50]">
+                <ng-template pTemplate="caption">
+                    <div class="flex">
+                        <span class="p-input-icon-right ml-auto">
+                            <p-multiSelect [options]="grades" [(ngModel)]="selectedGrades" defaultLabel="Select grade" 
+                            (ngModelChange)="selectionChanged($event)" [filter]="true"></p-multiSelect>
+                            <i *ngIf="searchInput.value != ''" (click)="clear(talentsGradeTable); searchInput.value = ''" class="pi pi-times cursor-pointer"></i>
+                            <i *ngIf="searchInput.value == ''" class="pi pi-search"></i>
+                            <input pInputText #searchInput type="text" (input)="searchValue($event)" placeholder="Search keyword" />
+                        </span>
+                    </div>
+                </ng-template>
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th>
+                            <div class="flex align-items-center">
+                                ID
+                            </div>
+                        </th>
+                        <th>
+                            <div class="flex align-items-center">
+                                Name
+                            </div>
+                        </th>
+                        <th>
+                            <div class="flex align-items-center">
+                                Email
+                            </div>
+                        </th>
+                        <th>
+                            <div class="flex align-items-center">
+                                Program
+                            </div>
+                        </th>   
+                        <th>
+                            <div class="flex align-items-center">
+                                Grade
+                            </div>
+                        </th>  
+                        <th>
+                            <div class="flex align-items-center">
+                                Edit / Delete
+                            </div>
+                        </th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-talent>
+                    <tr>
+                        <td>
+                            {{talent.id}}
+                        </td>
+                        <td class="talent-name-cell" (click)="router.navigate(['dashboard','all-talents','view',talent.id])">
+                            <img [alt]="" src="{{talent.profileImage}}" width="32" style="vertical-align: middle" />
+                            <span class="image-text ml-2">{{talent.name}}</span> 
+                        </td>
+                        <td>
+                            <span class="image-text ml-2">{{talent.email}}</span>
+                        </td>
+                        <td #programCell>
+                            <p *ngFor="let program of talent.enrolledPrograms">{{program.name}}</p>
+                        </td>
+                        <td>
+                            <p *ngFor="let program of talent.enrolledPrograms">{{program.sumOfMarks}}</p>
+                        </td>
+                        <td>
+                            <p-button icon="pi pi-pencil" styleClass="p-button-rounded" class="mr-2" [routerLink]="['edit',talent.id]"></p-button>
+                            <p-button icon="pi pi-trash" styleClass="p-button-danger p-button-rounded" [routerLink]="['edit',talent.id]"></p-button>
+                        </td>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="emptymessage">
+                    <tr>
+                        <td colspan="5">No data found.</td>
+                    </tr>
+                </ng-template>
+            </p-table>
+        </p-tabPanel>
+    </p-tabView>
+</div>
+    
+    
+</div>
+
+
+<div class="card">
+    <h1>All talents</h1>
+    <div class=" card flex justify-content-start">
+        <p-skeleton width="10rem" height="2rem"></p-skeleton>
+        <p-skeleton width="10rem" height="2rem"></p-skeleton>
+    </div>
+    <div class="flex justify-content-end">
+        <p-skeleton width="10rem" height="2rem"></p-skeleton>
+        <p-skeleton width="10rem" height="2rem"></p-skeleton>
+    </div>
+    <p-table [value]="allTalents" [tableStyle]="{ 'min-width': '50rem' }">
+        <ng-template pTemplate="header">
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Program</th>
+                <th>Edit / Delete</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-talent>
+            <tr>
+                <td><p-skeleton></p-skeleton></td>
+                <td><p-skeleton></p-skeleton></td>
+                <td><p-skeleton></p-skeleton></td>
+                <td><p-skeleton></p-skeleton></td>
+                <td><p-skeleton></p-skeleton></td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>

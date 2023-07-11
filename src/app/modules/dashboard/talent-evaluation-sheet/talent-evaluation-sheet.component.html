@@ -1,0 +1,54 @@
+<div class="card">
+    <div class="flex gap-3 align-items-center text-5xl my-4 font-bold">
+        <button pButton pRipple type="button" icon="pi pi-chevron-left" class="p-button-rounded p-button-outlined" routerLink="../"></button>Evaluation
+    </div>
+    <p-table scrollDirection="both" [scrollable]="true" responsiveLayout="scroll" #evaluationSheet [value]="tableData"
+        [paginator]="true" [rows]="5" [alwaysShowPaginator]="false" [showPageLinks]="false"
+        [showCurrentPageReport]="true" [showFirstLastIcon]="false" [tableStyle]="{ 'min-width': '50rem' }"
+        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+        [globalFilterFields]="displayedColumnsSub" [rowsPerPageOptions]="[5, 10, 25, 50]">
+        <ng-template pTemplate="caption">
+            <div class="flex">
+                <button pButton pRipple type="button">Download</button>
+
+                <span class="p-input-icon-right ml-auto">
+                    <i *ngIf="searchInput.value != ''" (click)="clear(evaluationSheet); searchInput.value = ''"
+                        class="pi pi-times cursor-pointer"></i>
+                    <i *ngIf="searchInput.value == ''" class="pi pi-search"></i>
+                    <input pInputText #searchInput type="text" (input)="searchValue($event)"
+                        placeholder="Search keyword" />
+                </span>
+            </div>
+        </ng-template>
+
+        <ng-template pTemplate="header">
+            <tr pRowGroupHeader>
+                <th *ngFor="let head of mainColumns; let i = index" [attr.colspan]="subColCounts[i]">
+                    <div class="flex align-items-center">
+                        {{head.name}}
+                    </div>
+                </th>
+            </tr>
+            <tr>
+                <th *ngFor="let shead of subColumns; let i = index">
+                    <div class="flex align-items-center">
+                        {{shead.name}}
+                    </div>
+                </th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-talent>
+            <tr>
+                <td *ngFor="let c of subColumns">
+                    <input type="text" pInputText *ngIf="c.id !== 'talentName1'" style="height: 30px; width: 60px;" [value]="talent[c.id]" (change)="updateEvaluation($event, talent.talentID)">
+                    <span type="text" *ngIf="c.id == 'talentName1'">{{talent[c.id]}}</span>
+                </td>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="emptymessage">
+            <tr>
+                <td [attr.colspan]="subColumns.length">No data found.</td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>
